@@ -38,7 +38,7 @@ public class ProductController {
 	String status = "Status";
 
 	@PostMapping("/product/upload")
-	public ResponseEntity<Map<String, Object>> upload(@RequestParam("file") MultipartFile file ) throws Exception{
+	public ResponseEntity<Map<String, Object>> upload(@RequestParam("file") MultipartFile file ){
 		List<ProductEntity> product=edService.saveProduct(file);
 				Map<String,Object> response=new HashMap<>();
 				if(ExcelHelper.checkExcelFormat(file)) {
@@ -59,7 +59,7 @@ public class ProductController {
 			}
 	}
 	@GetMapping("/getProduct")
-	public ResponseEntity< Map<String,Object>> getAll() throws Exception{
+	public ResponseEntity< Map<String,Object>> getAll(){
 		List<ProductEntity>list= edService.getAll();
 		
 		Map<String,Object> response=new HashMap<>();
@@ -89,7 +89,7 @@ public class ProductController {
     }
 
 	@RequestMapping("/pdf")
-	public ResponseEntity<Resource> pdfDownload() throws Exception {
+	public ResponseEntity<Resource> pdfDownload(){
 		String fileName = "Product.pdf";
 
 		ByteArrayInputStream actualData=edService.createPdf();
